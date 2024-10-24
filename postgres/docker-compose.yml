@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  postgres:
+    container_name: postgres_demo
+    image: postgres
+    environment:
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: strapistrapi
+      POSTGRES_DB: strapi
+      PGDATA: "/var/lib/postgresql/data/pgdata"
+    ports:
+      - "5432:5432"
+    restart: on-failure
+
