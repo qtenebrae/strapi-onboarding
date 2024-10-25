@@ -39,4 +39,19 @@ export class TodoItemsApi {
     async deleteTodoItem(id: number): Promise<TodoItemType> {
         return (await this.httpInstance.delete<TodoItemType>(`/todo-items/${id}`)).data;
     }
+
+    async updateTodoItem({
+        data,
+        id,
+    }: {
+        data: {
+            title?: string;
+            description?: string;
+            completed?: boolean;
+        };
+        id: number;
+    }): Promise<TodoItemType> {
+        return (await this.httpInstance.put<TodoItemType>(`/todo-items/${id}`, { data: data }))
+            .data;
+    }
 }
