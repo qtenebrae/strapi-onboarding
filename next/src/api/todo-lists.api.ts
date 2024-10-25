@@ -27,6 +27,11 @@ export class TodoListsApi {
         return (await this.httpInstance.get<TodoListsType>('/todo-lists')).data;
     }
 
+    async getTodoListById(id: number): Promise<TodoListType> {
+        return (await this.httpInstance.get<TodoListType>(`/todo-lists/${id}?populate=todo_item`))
+            .data;
+    }
+
     async addTodoList(
         data: Pick<TodoListAttributes, 'title' | 'description'>,
     ): Promise<TodoListType> {
