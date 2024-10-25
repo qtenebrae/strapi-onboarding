@@ -1,27 +1,18 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { TodoListsType, TodoListsApi, TodoListDataType } from '@/api/todo-lists.api';
+import React, { useState } from 'react';
+import { TodoListDataType } from '@/api/todo-lists.api';
 import Card from '@/components/ui/card/Card';
 import TodoList from '@/components/todoList/TodoList';
 import TodoListForm from '@/components/todoList/TodoListForm';
 import styles from './Home.module.css';
 
-const todoListsApi = TodoListsApi.getInstance();
+interface HomeProps {
+    initialTodoLists: TodoListDataType[];
+}
 
-const Home = () => {
-    const [todoLists, setTodoLists] = useState<TodoListDataType[]>([]);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response: TodoListsType = await todoListsApi.getTodoLists();
-                setTodoLists(response.data);
-            } catch (err) {}
-        };
-
-        fetchData();
-    }, []);
+const Home = ({ initialTodoLists }: HomeProps) => {
+    const [todoLists, setTodoLists] = useState<TodoListDataType[]>(initialTodoLists);
 
     const updateAfterDelete = (id: number) => {
         setTodoLists(prevTodoLists => prevTodoLists.filter(todo => todo.id !== id));
