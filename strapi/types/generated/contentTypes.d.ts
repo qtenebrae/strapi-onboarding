@@ -788,6 +788,81 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiTodoItemTodoItem extends Schema.CollectionType {
+  collectionName: 'todo_items';
+  info: {
+    singularName: 'todo-item';
+    pluralName: 'todo-items';
+    displayName: '\u042D\u043A\u0437\u0435\u043C\u043F\u043B\u044F\u0440 TODO';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    completed: Attribute.Boolean;
+    todo_list: Attribute.Relation<
+      'api::todo-item.todo-item',
+      'manyToOne',
+      'api::todo-list.todo-list'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::todo-item.todo-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::todo-item.todo-item',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiTodoListTodoList extends Schema.CollectionType {
+  collectionName: 'todo_lists';
+  info: {
+    singularName: 'todo-list';
+    pluralName: 'todo-lists';
+    displayName: '\u0421\u043F\u0438\u0441\u043E\u043A TODO';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.Text;
+    todo_item: Attribute.Relation<
+      'api::todo-list.todo-list',
+      'oneToMany',
+      'api::todo-item.todo-item'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::todo-list.todo-list',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::todo-list.todo-list',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -806,6 +881,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::todo-item.todo-item': ApiTodoItemTodoItem;
+      'api::todo-list.todo-list': ApiTodoListTodoList;
     }
   }
 }
