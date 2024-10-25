@@ -45,7 +45,7 @@ const TodoListForm = ({ updateAfterCreate }: TodoListFormProps) => {
 
                 {error && <div className={styles.error}>{error}</div>}
 
-                <Button type='submit' variant='green' className={styles.activeButton}>
+                <Button type='submit' variant='green' className={styles.addButton}>
                     Добавить список
                 </Button>
             </form>
