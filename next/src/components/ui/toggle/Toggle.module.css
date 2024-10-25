@@ -1,0 +1,28 @@
+.container {
+    width: 4rem;
+    height: 2.4rem;
+    background-color: #ccc;
+    border-radius: 50px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.circle {
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--background);
+    border-radius: 50%;
+    transition: transform 0.3s;
+    transform: translateX(1.6rem);
+}
+
+.active {
+    background-color: #2a9d8f;
+}
+
+.activeCircle {
+    transform: translateX(0);
+}
