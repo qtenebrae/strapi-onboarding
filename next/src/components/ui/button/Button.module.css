@@ -1,0 +1,36 @@
+.button {
+    padding: 10px 20px;
+    width: fit-content;
+
+    color: var(--white);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Анимации на наведение */
+}
+
+.red {
+    background-color: #e63946;
+}
+.red:hover {
+    background-color: #d62828;
+}
+
+.blue {
+    background-color: #0070f3;
+}
+
+.blue:hover {
+    background-color: #005bb5;
+}
+
+.green {
+    background-color: #2a9d8f;
+}
+
+
+.green:hover {
+    background-color: #21867a;
+}
